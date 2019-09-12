@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+  <configuration>
+  <!-- 카멜매핑셋팅 -->
+  	<settings>
+  		<setting name = "mapUnderscoreToCamelCase" value="true"/>
+  	</settings>
+  
+  <!-- 알리아스설정  -->
+  	<typeAliases>
+  		<typeAlias type="comment.vo.CommentVO" alias="comment"/>
+  		<typeAlias type="board.vo.BoardVO" alias="board"/>
+  	</typeAliases>
+  
+  </configuration>

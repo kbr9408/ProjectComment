@@ -6,7 +6,6 @@ public class BoardVO {
 	private String writer;
 	private String content;
 	private int replyCount;
-
 	public BoardVO() {}
 	
 	public BoardVO(int id, String title, String writer, String content, int replyCount) {

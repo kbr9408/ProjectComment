@@ -10,13 +10,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="commentCSS/commentCSS.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 
 <body>
 <form role="form" method="post" autocomplete="off">
-	borderNo. <input type="text" id="borderNo" name="borderNo" value="${comment.borderNo }" readonly="readonly"><br>
+	boardId. <input type="text" id="boardId" name="boardId" value="${comment.boardId }" readonly="readonly"><br>
 	commentText <input type="text" id="commentText" name="commentText" value="${comment.commentText }" readonly="readonly"><br>
 	commentWriter <input type="text" id="commentWriter" name="commentWriter" value="${comment.commentWriter }" readonly="readonly"><br>
 	commentRdate<input type="date" id="commentRdate" name="commentRdate" value="<fmt:formatDate value="${comment.commentRdate }" pattern="yyyy-MM-dd"/>" readonly="readonly"><br>

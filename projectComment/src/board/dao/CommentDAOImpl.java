@@ -44,8 +44,8 @@ public class CommentDAOImpl implements CommentDAO {
 	}
 
 	@Override
-	public int selectCount(int borderNo) {
-		return commentMapper.selectCount(borderNo);
+	public int selectCount(int boardId) {
+		return commentMapper.selectCount(boardId);
 	}
 
 	@Override

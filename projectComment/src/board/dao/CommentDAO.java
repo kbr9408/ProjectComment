@@ -11,5 +11,5 @@ public interface CommentDAO {
 	public List<CommentVO> selectAll();
 	public CommentVO selectOne(int commentNo);
 	public CommentVO selectLastOne();
-	public int selectCount(int borderNo);
+	public int selectCount(int boardId);
 }

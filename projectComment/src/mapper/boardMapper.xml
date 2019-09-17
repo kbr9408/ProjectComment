@@ -6,31 +6,33 @@
   <mapper namespace="board.mapper.BoardMapper">
   
   <select id="selectAll" resultType="board">
-   select * from board 
+   select * from comma.board 
   </select>
-   
+
   <select id="selectOne" parameterType="int" resultType="board">
-   select * from board where id=#{id}
+   select * from comma.board  where board_id=#{boardId} 
   </select>
+  
+  
     
   <insert id="insert" parameterType="board">
-  	insert into board(title, writer, content, reply_count) values (#{title}, #{writer}, #{content}, #{replyCount})
+  	insert into comma.board(title, writer, content, travel_date, reply_count) values ( #{title}, #{writer}, #{content}, #{travelDate}, #{replyCount})
   </insert>
   
   <update id="update" parameterType="board">
-  	update board set title = #{title}, content= #{content}, reply_count= #{replyCount} where id=#{id} 
+  	update comma.board  set title = #{title}, content= #{content}, reply_count= #{replyCount}, travel_Date=#{travelDate} where board_id=#{boardId} 
   </update>
   
   <update id="updateReplyCount" parameterType="int">
-  	update board set reply_count = #{replyCount} where id=#{id}
+  	update comma.board set reply_count = #{replyCount} where board_id=#{boardId} 
   </update>
   
-  <delete id="delete">
-  	delete from board where id = #{id}  
+  <delete id="delete" parameterType="board">
+  	delete from comma.board  where board_id=#{boardId} 
   </delete>
   
   <select id="selectBoardLastOne" resultType="board">
-		select * from board order by id desc limit 1
-	</select>
-  
+		select * from comma.board  order by board_id desc limit 1  
+  </select>
+  		 
   </mapper>

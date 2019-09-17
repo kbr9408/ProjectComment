@@ -11,8 +11,8 @@
   
   <!-- 알리아스설정  -->
   	<typeAliases>
+  		<typeAlias type="board.vo.BoardVO" alias="board" />
   		<typeAlias type="comment.vo.CommentVO" alias="comment"/>
-  		<typeAlias type="board.vo.BoardVO" alias="board"/>
   	</typeAliases>
   
   </configuration>

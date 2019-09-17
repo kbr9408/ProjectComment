@@ -1,16 +1,19 @@
 package board.mapper;
 
-import board.vo.BoardVO;
+import java.util.List;
 
+import board.vo.BoardVO;
 
 @MyMapper
 public interface BoardMapper {
+	
 	public void insert(BoardVO board);
 	public void update(BoardVO board);
-	public void updateReplyCount(int id);
-	public void delete(int id);
-	public BoardVO selectOne(int id);
-	public BoardVO selectAll();
+	public void updateReplyCount(int boardId);
+	public void delete(BoardVO board);
+	public BoardVO selectOne(int boardId);
+	public List<BoardVO> selectAll();
 	public BoardVO selectBoardLastOne();
 	
+
 }

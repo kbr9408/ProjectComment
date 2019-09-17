@@ -22,10 +22,34 @@ public class BoardServiceImpl implements BoardService {
 	private CommentDAO commentDao;
 	
 	@Override
-	public void createBoard(BoardVO board) {
+	public BoardVO createBoard(BoardVO board) {
 		boardDao.insert(board);
-		
+		return boardDao.selectBoardLastOne();
 	}
+
+	@Override
+	public void deleteBoard(BoardVO board) {
+		
+		boardDao.delete(board);
+	}
+
+	@Override
+	public BoardVO updateBoard(BoardVO board) {
+		boardDao.update(board);
+		BoardVO updatedBoard = boardDao.selectOne(board.getBoardId());
+		return updatedBoard;
+	}
+
+	@Override
+	public List<BoardVO> selectBoardList(){
+		return boardDao.selectAll();
+	}
+
+	@Override
+	public BoardVO selectOneBoard(int boardId) {
+		return boardDao.selectOne(boardId);
+	}
+	
 
 	@Override
 	@Transactional
@@ -55,5 +79,11 @@ public class BoardServiceImpl implements BoardService {
 	public void updateComment(CommentVO comment) {
 		commentDao.updateComment(comment);
 		
+	}
+	
+	@Override
+	@Transactional
+	public void selectOneComment(CommentVO comment ) {
+		commentDao.selectOne(comment.getCommentNo());
 	}
 }

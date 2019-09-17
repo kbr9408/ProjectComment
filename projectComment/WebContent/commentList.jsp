@@ -21,7 +21,7 @@
 	<div>
 	<h2>댓글</h2>
 	<form action="comment/create" method="post">
-		<input type="text" name="borderNo" placeholder="보더번호"><br>
+		<input type="hidden" name="boardId" id="${comment.boardId }"><br>
 		<input type="text" name="commentText" placeholder="내용을 입력하세요."><br>
 		<input type="text" name="commentWriter" placeholder="작성자"><br>
 		<input type="submit" value="댓글 작성">
@@ -29,17 +29,8 @@
 	</form>
 	</div>
 	<form action="comment/list" method="post">
-	<table>
-		<tbody>
-			<c:forEach var="comment" items="${clist }" varStatus="status">
-			<tr>
-				<td><c:out value="${comment.commentWriter }"/></td>
-				<td><c:out value="${comment.commentText }"/></td>
-				<td><c:out value="${comment.commentUdate }"/></td>
-			</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+	<input type="submit" value="댓글 보기">
+	
 	</form> 
 </body>
 </html>

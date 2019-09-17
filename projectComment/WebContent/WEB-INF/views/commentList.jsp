@@ -9,16 +9,38 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="commentCSS/commentCSS.css" rel="stylesheet" type="text/css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
-<form role="form" method="post" autocomplete="off">
-	borderNo. <input type="text" id="borderNo" name="borderNo" value="${comment.borderNo }" readonly="readonly"><br>
-	commentText <input type="text" id="commentText" name="commentText" value="${comment.commentText }" readonly="readonly"><br>
-	commentWriter <input type="text" id="commentWriter" name="commentWriter" value="${comment.commentWriter }" readonly="readonly"><br>
-	commentRdate<input type="date" id="commentRdate" name="commentRdate" value="<fmt:formatDate value="${comment.commentRdate }" pattern="yyyy-MM-dd"/>" readonly="readonly"><br>
-	commentUdate<input type="date" id="commentUdate" name="commentUdate" value="<fmt:formatDate value="${comment.commentUdate }" pattern="yyyy-MM-dd"/>" readonly="readonly"><br>
-</form>
+<table>
+	<thead>
+	<h2>댓글</h2>
+	<form action="comment/create" method="post">
+		<input type="text" name="commentText" placeholder="내용을 입력하세요."><br>
+		<input type="text" name="commentWriter" placeholder="작성자"><br>
+		<input type="submit" value="댓글 작성">
+		<input type="reset" value="cancel">
+	</form>
+	</thead>
+		<tbody>
+			<c:forEach var="comment" items="${clist }" varStatus="status">
+			
+			<tr>
+				<td><c:out value="${comment.commentWriter }"/></td>
+				<td><c:out value="${comment.commentText }"/></td>
+				<td><c:out value="${comment.commentUdate }"/></td>
+				<td>
+					<form action="comment/selectOne" method="post">
+						<input type="submit" value="댓글 수정">
+					</form>
+				</td>
+				
+			</tr>
+			
+			</c:forEach>
+		</tbody>
+</table>
 </body>
 </html>

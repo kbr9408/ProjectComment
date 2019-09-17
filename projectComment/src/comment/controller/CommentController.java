@@ -46,4 +46,11 @@ public class CommentController {
 		boardService.updateComment(comment);
 		return "/WEB-INF/views/updateCommentResult.jsp";
 	}
+	
+	@RequestMapping("/selectOne")
+	public String selectOneComment(Model model, CommentVO comment) {
+		model.addAttribute("selectOne", comment);
+		boardService.selectOneComment(comment);
+		return "/WEB-INF/views/updateCommentResult.jsp";
+	}
 }

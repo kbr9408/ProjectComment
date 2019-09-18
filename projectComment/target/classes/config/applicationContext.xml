@@ -59,16 +59,7 @@
 	
 	<!-- 어노테이션 방식으로 트렌젝션 걸기 -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
-	
-	<!-- 트렌젝션을 걸어줄 어드바이스를 생성 -->
-	<!-- 트랜젝션을 걸어줄 어드바이스를 생성 -->
-	<!-- <tx:advice id="txAdvice" transaction-manager="transactionManager">
-		<tx:attributes>
-			<tx:method name="createAccount" rollback-for="RuntimeException"/>
-		</tx:attributes>
-	</tx:advice>
-	<aop:config>
-		<aop:pointcut expression="execution(public * bank.service.BankServiceImpl.*(..))" id="controllerPt"/>
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="controllerPt"></aop:advisor>
-	</aop:config>-->
+	<mvc:annotation-driven/>
+   <mvc:resources mapping="/resources/**" location="/resources/"
+    cache-period="31556926"/>
 </beans>

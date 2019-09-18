@@ -33,6 +33,12 @@ public class BoardController {
 		return "/WEB-INF/views/boardResult.jsp";
 	}
 	
+	   @GetMapping("board/index")
+	   public String index(Model model) {
+	       
+	       return "/index.jsp";
+	   }
+	
 //	@GetMapping("write")
 //	public String boardWrite() {
 //	  return "board/boardWrite";

@@ -12,7 +12,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<!-- 필요한 데이터 빈 등록 -->
-	<context:component-scan base-package="board.dao, board.service, comment.controller, board.controller"/>
+	<context:component-scan base-package="search.dao, search.service, search.controller, board.dao, board.service, board.controller, comment.dao, comment.service, comment.controller"/>
 	
 	<!-- 디비설정 프로퍼티 가져오기 -->
 	<context:property-placeholder location = "classpath:config/dbvalue.properties"/>
@@ -38,6 +38,7 @@
 			<list>
 				<value>classpath:mapper/commentMapper.xml</value>
 				<value>classpath:mapper/boardMapper.xml</value>
+				<value>classpath:mapper/searchMapper.xml</value>
 			</list>
 		</property>
 		

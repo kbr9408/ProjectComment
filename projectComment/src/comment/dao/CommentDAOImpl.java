@@ -1,4 +1,4 @@
-package board.dao;
+package comment.dao;
 
 import java.util.List;
 

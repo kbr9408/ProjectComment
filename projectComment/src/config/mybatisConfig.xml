@@ -13,6 +13,7 @@
   	<typeAliases>
   		<typeAlias type="board.vo.BoardVO" alias="board" />
   		<typeAlias type="comment.vo.CommentVO" alias="comment"/>
+  		
   	</typeAliases>
   
   </configuration>

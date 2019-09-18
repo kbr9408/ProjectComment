@@ -14,11 +14,6 @@ public interface BoardService {
 	public List<BoardVO> selectBoardList();
 	
 	
-	public void createComment(CommentVO comment);
-	public void deleteComment(CommentVO comment);
-	public void updateComment(CommentVO comment);
-	public void selectOneComment(CommentVO comment);
-	public List<CommentVO> commentList(CommentVO comment);
 
 
 }

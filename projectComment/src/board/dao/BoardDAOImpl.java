@@ -1,10 +1,13 @@
 package board.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 
+import board.common.Search;
 import board.mapper.BoardMapper;
 import board.vo.BoardVO;
 
@@ -45,9 +48,9 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<BoardVO> selectAll() {
+	public List<BoardVO> selectAll(Search search) {
 		
-		return boardMapper.selectAll();
+		return boardMapper.selectAll(search);
 	}
 
 	@Override
@@ -55,5 +58,27 @@ public class BoardDAOImpl implements BoardDAO {
 		// TODO Auto-generated method stub
 		return boardMapper.selectBoardLastOne();
 	}
+	
+	@Override
+	public void updateReplyCount(int boardId, int amount) throws Exception{
+		
+	}
 
+	@Override
+	public void updateViewCount(int boardId) throws Exception{
+		boardMapper.updateViewCount(boardId);
+	}
+	
+	@Override
+	public int selectBoardListCnt(Search search) throws Exception{
+		return boardMapper.selectBoardListCnt(search);
+	}
+
+	
+	
+	
+	
+	
+	
+	
 }

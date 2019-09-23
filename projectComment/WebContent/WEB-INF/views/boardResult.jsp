@@ -9,31 +9,110 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
 <title>ResultPage</title>
  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+ <style>
+ 	body {
+  background: #eee;
+  margin: 0;
+  padding: 0;
+  font-family: "Source Sans Pro", sans-serif;
+  color: #333;
+}
+
+header {
+  width: 100%;
+  padding: 20px 0;
+  background: #fff;
+  border-bottom: 1px solid #e1e1e1;
+  /* animation magic */
+  transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  z-index: 9999;
+  top: 0;
+  position: fixed;
+}
+
+header h1 {
+  font-size: 30px;
+  text-indent: 40px;
+  font-weight: bold;
+}
+
+
+
+.container {
+  width: 60%;
+  margin: 180px auto;
+}
+
+.shrink {
+  padding: 20px 0;
+}
+
+p {
+  margin: 0 0 40px 0;
+  line-height: 24px;
+}
+
+strong {
+  font-weight: bold;
+}
+
+
+ </style>
 </head>
 <body>
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
 <form id="boardForm" role="form" method="post" autocomplete="off"> 
-	No. <input type="text" id="boardId" name="boardId" value="${board.boardId}" readonly="readonly"><br>
-	board Title : <input type="text" id="title"  name="title" value="${board.title}" readonly="readonly"><br>
-	travel Date : <input type="date" id="travelDate"  name="travelDate" value="<fmt:formatDate value="${board.travelDate}" pattern="yyyy-MM-dd"/>" readonly="readonly"><br>
-	writer : <input type="text" id="writer" name="writer" value="${board.writer}" readonly="readonly"><br>
-	content : <input type="text" id="content" name="content" value="${board.content}" readonly="readonly"><br> 
-	write Date : <input type="date" id="wDate" name="wDate" value="<fmt:formatDate value="${board.wDate}" pattern="yyyy-MM-dd"/>"  readonly="readonly" ><br>
-	update Date : <input type="date" id="uDate" name="uDate" value="<fmt:formatDate value="${board.uDate}" pattern="yyyy-MM-dd"/>"  readonly="readonly" ><br>
+<header>
+  <h1>${board.title}</h1><br>
+  
+</header>
+<section class="container">
+	<p><strong>${board.writer}&ensp;
+	|&ensp;<fmt:formatDate value="${board.wDate}" pattern="yyyy. MM. dd. HH:mm"/>&ensp;
+	|&ensp;Travel Date_ <fmt:formatDate value="${board.travelDate}" pattern="yyyy-MM-dd"/>&ensp;
+	|&ensp;View_ ${board.viewCount }
+	
+	</strong></p>
+	<hr>
+  	
+	${board.content} 
+		<input type="hidden" name="boardId" value="${board.boardId}"/><br>
+		<input type="hidden" name="writer" value="${board.writer}"/><br>
+		<input type="hidden" name="title"  value="${board.title}"/>
+		<input type="hidden" name="travelDate" value="<fmt:formatDate value="${board.travelDate}" pattern="yyyy-MM-dd"/>"/><br>
+		<input type="hidden" name="content" value="${board.content}"/>
+		<input type="hidden" name="viewCount" value="${board.viewCount}"/>
+		<input type="hidden" name="wDate" value="<fmt:formatDate value="${board.wDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"/>
+		<input type="hidden" name="uDate" value="${board.uDate}"/>
+		
+			<button class= "btn btn-primary" id="modify_btn">modify</button>
+			<button class="btn btn-primary" id="delete_btn">delete</button>
+			<button class="btn btn-primary" id="list_btn">list</button>
+		
+		
+</section>
+
+
+
+
 
 
 </form> 
 
-<p>
-<button id="modify_btn">modify</button>
-<button id="delete_btn">delete</button>
-<button id="list_btn">list</button>
-<form action="comment/list" method="post">
-	<input type="submit" value="댓글 보기">
-	
-	</form> 
-</p>
+
 
 <script>
 

@@ -4,12 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
+import board.common.Pagination;
+import board.common.Search;
 import board.dao.BoardDAO;
 import board.vo.BoardVO;
-import comment.dao.CommentDAO;
-import comment.vo.CommentVO;
 
 @Service("boardService")
 public class BoardServiceImpl implements BoardService {
@@ -37,13 +38,32 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardVO> selectBoardList(){
-		return boardDao.selectAll();
+	public List<BoardVO> selectBoardList(Search search){
+		return boardDao.selectAll(search);
 	}
 
+	@Transactional
 	@Override
-	public BoardVO selectOneBoard(int boardId) {
+	public BoardVO selectOneBoard(int boardId) throws Exception{
+		BoardVO board = new BoardVO();
+		boardDao.updateViewCount(boardId);
+		board = boardDao.selectOne(boardId);
+		boardDao.update(board);
+		return board;
+	}
+	
+	@Transactional(isolation = Isolation.READ_COMMITTED)
+	@Override
+	public BoardVO read(int boardId) throws Exception {
+		boardDao.updateViewCount(boardId);
 		return boardDao.selectOne(boardId);
 	}
+	
+	@Override
+	public int selectBoardListCnt(Search search) throws Exception{
+		return boardDao.selectBoardListCnt(search);
+	}
+	
+	
 	
 }

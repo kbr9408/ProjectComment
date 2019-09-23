@@ -46,32 +46,47 @@ $(document).ready(function() {
 
 </script>
 
-
-
+<style>
+	body {
+		padding-top:30px;
+		padding-bottom:30px;
+	}
+</style>
 </head>
-
 <body>
-
-<h2 style="text-align: center;">Edit your story</h2><br><br><br>
-
-
-
-<div style="width: 60%; margin: auto;">
-
-	<form id="boardForm" method="post">
-		<input type="text" name="writer" style="width: 20%;" value="${board.writer}"/><br>
-		<input type="text" name="title" style="width: 40%;" value="${board.title}"/>
-		<input type="date" name="travelDate" value="<fmt:formatDate value="${board.travelDate}" pattern="yyyy-MM-dd"/>" ><br>
-		<br><br> 
-
-		<textarea id="summernote" name="content"> ${board.content}</textarea>
-		<input id="subBtn" type="button" value="submit" style="float: right;" onclick="goModify()"/>
-
+<article>
+<div class="container" role="main">
+<h2>Edit your story</h2>
+	<form name="form" role="form" id="boardForm" method="post">
+	<div class="mb-3">
+		<label for="writer">Writer</label>
+		<input type="text" name="writer" class="form-control" value="${board.writer}"/><br>
+	</div>
+	<div class="mb-3">
+		<label for="title">Title</label>
+		<input type="text" name="title" class="form-control" value="${board.title}"/><br>
+	</div>
+	<div class="mb-3">
+		<label for="travelDate">Travel Date</label>
+		<input type="date" name="travelDate" class="form-control" value="<fmt:formatDate value="${board.travelDate}" pattern="yyyy-MM-dd"/>" ><br>
+	</div>
+	<div class="mb-3">
+		<label for="wDate">최초 작성일 : </label>
+		<fmt:formatDate value="${board.wDate}" pattern="yyyy-MM-dd HH:mm:ss"/><br><br>
+	</div>
+	<div class="mb-3">
+		<label for="content">Content</label>
+		<textarea id="summernote" name="content"> ${board.content}</textarea><br>
+	</div>
+	<div>
+		<input class="btn btn-sm btn-primary" id="subBtn" type="button" value="submit" onclick="goModify()"/>
+	</div>
 	</form>
 </div>
+</article>
 </body>
-<script>
 
+<script>
 function goModify(){
     
     var form = document.getElementById("boardForm");

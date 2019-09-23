@@ -15,10 +15,9 @@ public class test {
 		
 		BoardService bs = context.getBean("boardService", BoardService.class);
 		
-//		bs.createBoard(new BoardVO(1, "¾È³çÇÏ¼¼¿ä", "Á¶Èñ¸²", "ÇÏÇÏÇÏÇÏ", 0));
+//		bs.createBoard(new BoardVO(1, "ï¿½È³ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 0));
 		
-		System.out.println(bs.selectOneBoard(1));
-		
+	
 	}
 
 }

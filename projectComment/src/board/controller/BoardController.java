@@ -56,11 +56,17 @@ public class BoardController {
 		return "/WEB-INF/views/boardResult.jsp";
 	}
 	
+//	@RequestMapping("board/viewOne")
+//	public String boardViewOne(Model model , BoardVO board) throws Exception {
+//		board.setReplyCount(0);
+//		BoardVO boardOne = boardService.read(board.getBoardId());
+//		model.addAttribute("board", boardOne);
+//		return "/WEB-INF/views/boardResult.jsp";
+//	}
+	
 	@RequestMapping("board/viewOne")
-	public String boardViewOne(Model model , BoardVO board) throws Exception {
-		board.setReplyCount(0);
-		BoardVO boardOne = boardService.read(board.getBoardId());
-		model.addAttribute("board", boardOne);
+	public String boardViewOne(Model model , @RequestParam("boardId")int boardId) throws Exception {
+		model.addAttribute("board", boardService.selectOneBoard(boardId));
 		return "/WEB-INF/views/boardResult.jsp";
 	}
 	

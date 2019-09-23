@@ -32,9 +32,14 @@ $(document).ready(function() {
 });
 
 //목록으로
-$("#list_btn").click(function(){
-	
-})
+function list_bt(){
+	 var form = document.getElementById("boardForm");
+	 var url = "<c:url value='/board/list'/>";
+
+	    form.action = url
+
+	    form.submit();
+}
 </script>
 <style>
 	body {
@@ -66,9 +71,11 @@ $("#list_btn").click(function(){
 		</div>
 		<div>
 			<input class="btn btn-sm btn-primary" id="subBtn" type="button" value="submit" onclick="goWrite(this.form)"/>
-			<input class="btn btn-sm btn-primary" id="list_btn" type="button" value="list"/>
+			
+			<a class="btn btn-sm btn-primary" type="button" id="list" href="<c:url value='/board/list'/>">list</a>
 		</div>
-	</form>
+		</form>
+		
 </div>
 </article>
 

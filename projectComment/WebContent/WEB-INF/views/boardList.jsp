@@ -22,33 +22,41 @@
 <script>
 //이전버튼 이벤트
 function fn_prev(page, range, rangeSize){
+	var form = document.getElementById("boardForm");
 	var page = ((range-2)*rangeSize)+1;
 	var range = range-1;
 	
-	var url = "<c:url value='/board'/>";
+	var url = "<c:url value='/board/list'/>";
 	url = url + "?page=" + page;
 	url = url + "&range=" + range;
-	location.href = url;
+	form.action = url;
+	form.submit();
 }
 //페이지 번호 클릭
 function fn_paginaiton(page,range,rangeSize,searchType,keyword){
-	var url = "<c:url value='/boardList'/>";
+	var form = document.getElementById("boardForm");
+	var url = "<c:url value='/board/list'/>";
 	url = url + "?page=" + page;
 	url = url + "&range=" + range;
-	location.href = url;
+	form.action = url;
+	form.submit();
 }
 //다음 버튼 이벤트
 function fn_next(page, range, rangeSize){
+	var form = document.getElementById("boardForm");
 	var page = parseInt((range*rangeSize))+1;
 	var range = parseInt(range)+1;
 	
-	var url = "<c:url value='/board'/>";
+	var url = "<c:url value='/board/list'/>";
 	url = url + "?page=" + page;
 	url = url + "&range=" + range;
-	location.href = url;
+	form.action = url;
+	form.submit();
 }
 
-
+function list_bt(){
+	location.href = "<c:url value='/board/list'/>";
+}
 
 function comment_create(boardId){
 	var form = document.getElementById("boardForm");
@@ -130,7 +138,7 @@ function btnSearch(){
             <tbody>
             <c:choose>
 				<c:when test="${empty list}">
-					<tr><td colspan="7" align="center">데이터가 없습니다.</td></tr>
+					<tr><td colspan="8" align="center">데이터가 없습니다.</td></tr>
 				</c:when>
 				<c:when test="${!empty list }">
 				
@@ -186,6 +194,8 @@ function btnSearch(){
     			<option value="title">제목</option>
     			<option value="content">내용</option>
     			<option value="writer">작성자</option>
+    		
+   
     		</select>
     	</div>
     	<div class="w300" style="padding-right:10px">
@@ -193,6 +203,7 @@ function btnSearch(){
     	</div>
     	<div>
     		<button class="btn btn-sm btn-primary" name="btnSearch" id="btnSearch" onclick="btnSearch()">검색</button>
+    		<button class="btn btn-sm btn-primary" name="list" id="list" onclick="list_bt()">전체보기</button>
     	</div>
 
     </div>

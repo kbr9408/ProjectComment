@@ -20,7 +20,7 @@
    	<if test="searchType=='writer' and keyword != null and keyword !=''">
    		AND writer like CONCAT('%',#{keyword},'%')
    	</if>
-   	
+  
    </trim>
   <!-- 페이징 -->
    LIMIT #{startList}, #{listSize}
@@ -31,7 +31,7 @@
 
 
   <select id="selectOne" parameterType="int" resultType="board">
-   select * from comma.board  where board_id=#{boardId} 
+   select * from comma.board where board_id=#{boardId} 
   </select>
   
   
@@ -76,6 +76,7 @@
   			<if test="searchType=='writer'">
   				AND writer like CONCAT('%',#{keyword},'%')
   			</if>
+  			
   		</if>
   	</trim>
   	<!-- search -->

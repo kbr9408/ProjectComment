@@ -45,24 +45,28 @@ public class BoardServiceImpl implements BoardService {
 	@Transactional
 	@Override
 	public BoardVO selectOneBoard(int boardId) throws Exception{
-		BoardVO board = new BoardVO();
-		boardDao.updateViewCount(boardId);
-		board = boardDao.selectOne(boardId);
-		boardDao.update(board);
-		return board;
-	}
-	
-	@Transactional(isolation = Isolation.READ_COMMITTED)
-	@Override
-	public BoardVO read(int boardId) throws Exception {
-		boardDao.updateViewCount(boardId);
 		return boardDao.selectOne(boardId);
 	}
+	
+//
+//	
+//	@Transactional(isolation = Isolation.READ_COMMITTED)
+//	@Override
+//	public BoardVO read(int boardId) throws Exception {
+//		boardDao.updateViewCount(boardId);
+//		return boardDao.selectOne(boardId);
+//	}
 	
 	@Override
 	public int selectBoardListCnt(Search search) throws Exception{
 		return boardDao.selectBoardListCnt(search);
 	}
+
+//	@Override
+//	public BoardVO read(int boardId) throws Exception {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 	
 	
 	

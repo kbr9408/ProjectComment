@@ -80,6 +80,7 @@ $(document).ready(function() {
 	</div>
 	<div>
 		<input class="btn btn-sm btn-primary" id="subBtn" type="button" value="submit" onclick="goModify()"/>
+		<a class="btn btn-sm btn-primary" type="button" id="list" href="<c:url value='/board/list'/>">list</a>
 	</div>
 	</form>
 </div>

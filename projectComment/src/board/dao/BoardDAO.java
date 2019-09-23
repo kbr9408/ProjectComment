@@ -16,7 +16,7 @@ public interface BoardDAO {
 	public List<BoardVO> selectAll(Search search);
 	public BoardVO selectBoardLastOne();
 	public void updateReplyCount(int boardId, int amount) throws Exception;
-	public void updateViewCount(int boardId) throws Exception;
+//	public void updateViewCount(int boardId) throws Exception;
 	public int selectBoardListCnt(Search search) throws Exception;
 	
 

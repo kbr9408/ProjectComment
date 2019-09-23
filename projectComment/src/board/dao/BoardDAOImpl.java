@@ -64,10 +64,10 @@ public class BoardDAOImpl implements BoardDAO {
 		
 	}
 
-	@Override
-	public void updateViewCount(int boardId) throws Exception{
-		boardMapper.updateViewCount(boardId);
-	}
+//	@Override
+//	public void updateViewCount(int boardId) throws Exception{
+//		boardMapper.updateViewCount(boardId);
+//	}
 	
 	@Override
 	public int selectBoardListCnt(Search search) throws Exception{

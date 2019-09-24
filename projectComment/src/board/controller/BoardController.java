@@ -51,7 +51,7 @@ public class BoardController {
 	@RequestMapping("board")
 	public String board(Model model) {
 	    
-	    return "//WEB-INF/views/boardWrite.jsp";
+	    return "/WEB-INF/views/boardWrite.jsp";
 	}
 	
 	//board/write

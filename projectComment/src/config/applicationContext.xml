@@ -13,7 +13,9 @@
 
 	<!-- 필요한 데이터 빈 등록 -->
 	<context:component-scan base-package="board.dao, board.service, board.controller, comment.dao, comment.service, comment.controller"/>
-	
+	<context:component-scan base-package="google.api"/>
+	<context:component-scan base-package="member.dao, member.service"/>
+	<context:component-scan base-package="member.controller"/>
 	<!-- 디비설정 프로퍼티 가져오기 -->
 	<context:property-placeholder location = "classpath:config/dbvalue.properties"/>
 	
@@ -38,6 +40,7 @@
 			<list>
 				<value>classpath:mapper/commentMapper.xml</value>
 				<value>classpath:mapper/boardMapper.xml</value>
+				<value>classpath:mapper/memberMapper.xml</value>
 			</list>
 		</property>
 		
@@ -48,7 +51,19 @@
 	<!-- 마이바티스 매퍼 인터페이스로 만들어 놓은 애들을 빈 객체로 만들어주는 아이 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="board.mapper"/>
-		<property name="annotationClass" value ="board.mapper.MyMapper"/> 
+		<property name="annotationClass" value="board.mapper.MyMapper"/>
+	</bean>
+
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name= "basePackage" value="member.mapper"/>
+		<property name="annotationClass" value="member.mapper.MyMapper"/>
+	</bean>
+	
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name= "basePackage" value="comment.mapper"/>
+		<property name="annotationClass" value="comment.mapper.MyMapper"/>
 	</bean>
 
 	<!-- 트랜젝션 설정을 위한 태그 -->
@@ -62,4 +77,19 @@
 	<mvc:annotation-driven/>
    <mvc:resources mapping="/resources/**" location="/resources/"
     cache-period="31556926"/>
+    
+    
+    
+    <bean id="googleConnectionFactory"
+  class="org.springframework.social.google.connect.GoogleConnectionFactory">
+    <constructor-arg value="712569324791-15au55v5pvecbdvmt0ot8shmfe32nunr.apps.googleusercontent.com" />
+    <constructor-arg value="pcF7zn1u_uMfJiozpkXx9Ghw" />
+  </bean>
+
+  <!-- 승인된 자바스크립트 원본과 승인된 리디렉션 URI -->
+  <bean id="googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters">
+    <property name="scope" value="https://www.googleapis.com/auth/plus.login" />
+    <property name="redirectUri" value="http://localhost:8080/login_project/oauth2callback		" />
+  </bean>
+    
 </beans>

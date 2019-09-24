@@ -26,9 +26,18 @@ import board.common.Pagination;
 import board.common.Search;
 import board.service.BoardService;
 import board.vo.BoardVO;
+import comment.service.CommentService;
+import comment.vo.CommentVO;
+import member.mapper.MemberMapper;
+import member.vo.MemberVo;
 
 @Controller
 public class BoardController {
+	@Autowired
+	private MemberMapper memberMapper;
+	
+	@Autowired
+	private CommentService commentService;
 
 	@Autowired
 	private BoardService boardService;
@@ -45,16 +54,30 @@ public class BoardController {
 	    return "//WEB-INF/views/boardWrite.jsp";
 	}
 	
-	
-	
+	//board/write
 	@RequestMapping("board/write")
-	public String write(BoardVO board, Model model ) {
-		board.setReplyCount(0);
+	public String write(BoardVO board, Model model,HttpSession session) {
 
+		session.getAttribute("member");
+		MemberVo member= (MemberVo) session.getAttribute("loginInfo");
+		
+		model.addAttribute("member", member);
+		board.setReplyCount(0);
 		BoardVO createboard = boardService.createBoard(board);
 		model.addAttribute("board", createboard);
 		return "/WEB-INF/views/boardResult.jsp";
 	}
+	
+	
+	
+//	@RequestMapping("board/write")
+//	public String write(BoardVO board, Model model ) {
+//		board.setReplyCount(0);
+//
+//		BoardVO createboard = boardService.createBoard(board);
+//		model.addAttribute("board", createboard);
+//		return "/WEB-INF/views/boardResult.jsp";
+//	}
 	
 //	@RequestMapping("board/viewOne")
 //	public String boardViewOne(Model model , BoardVO board) throws Exception {
@@ -64,11 +87,32 @@ public class BoardController {
 //		return "/WEB-INF/views/boardResult.jsp";
 //	}
 	
+	
+	//board/viewOne
 	@RequestMapping("board/viewOne")
-	public String boardViewOne(Model model , @RequestParam("boardId")int boardId) throws Exception {
-		model.addAttribute("board", boardService.selectOneBoard(boardId));
+	public String boardViewOne(Model model , BoardVO board,HttpSession session) throws Exception {
+		session.getAttribute("loginInfo");
+		MemberVo member= (MemberVo) session.getAttribute("loginInfo");
+		System.out.println("viewOne");
+		model.addAttribute("member", member);
+		
+		board.setReplyCount(0);
+		BoardVO boardOne = boardService.selectOneBoard(board.getBoardId());
+		model.addAttribute("board", boardOne);
+		
+		
+		List<CommentVO> list = commentService.commentList(board.getBoardId());
+		model.addAttribute("list", list);
+		System.out.println("controller list"+list);
 		return "/WEB-INF/views/boardResult.jsp";
 	}
+	
+	
+//	@RequestMapping("board/viewOne")
+//	public String boardViewOne(Model model , @RequestParam("boardId")int boardId) throws Exception {
+//		model.addAttribute("board", boardService.selectOneBoard(boardId));
+//		return "/WEB-INF/views/boardResult.jsp";
+//	}
 	
 	@RequestMapping("board/modify")
 	public String boardEditPre(Model model, BoardVO board) {

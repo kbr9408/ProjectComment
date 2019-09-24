@@ -6,14 +6,19 @@
   <configuration>
   <!-- 카멜매핑셋팅 -->
   	<settings>
-  		<setting name = "mapUnderscoreToCamelCase" value="true"/>
+  		<!-- 카멜케이스를 테이블컬럼명과 맵핑 -->
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+  		<!-- insert시 자동생성된 키를 반환해주는 셋팅 -->
+   		<setting name="useGeneratedKeys" value="true"/>
   	</settings>
   
   <!-- 알리아스설정  -->
   	<typeAliases>
+  	<typeAlias type="member.vo.MemberVo" alias ="member" />
   		<typeAlias type="board.vo.BoardVO" alias="board" />
   		<typeAlias type="comment.vo.CommentVO" alias="comment"/>
   		
   	</typeAliases>
   
   </configuration>
+   

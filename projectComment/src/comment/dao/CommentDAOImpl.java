@@ -1,12 +1,15 @@
 package comment.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import board.mapper.CommentMapper;
+import comment.mapper.CommentMapper;
 import comment.vo.CommentVO;
+import commons.Criteria;
 
 @Repository("commentDao")
 public class CommentDAOImpl implements CommentDAO {
@@ -17,7 +20,7 @@ public class CommentDAOImpl implements CommentDAO {
 	@Override
 	public void insertComment(CommentVO comment) {
 		commentMapper.insertComment(comment);
-		System.out.println(comment+"dao");
+		
 	}
 
 	@Override
@@ -43,15 +46,26 @@ public class CommentDAOImpl implements CommentDAO {
 		return commentMapper.selectLastOne();
 	}
 
+
 	@Override
-	public int selectCount(int boardId) {
-		return commentMapper.selectCount(boardId);
+	public List<CommentVO> selectAll(int boardId) {
+		return commentMapper.selectAll(boardId);
+	}
+
+	//페이징처리 메소드	
+	@Override
+	public List<CommentVO> listPaging(int boardId, Criteria criteria) {
+		Map<String,Object> paramMap = new HashMap<>();
+		paramMap.put("boardId",boardId);
+		paramMap.put("criteria",criteria);
+		
+		return commentMapper.selectAll(boardId);
 	}
 
 	@Override
-	public List<CommentVO> selectAll() {
-		System.out.println("DAOIMPL"+commentMapper.selectAll());
-		return commentMapper.selectAll();
+	public int CountComment(int boardId) throws Exception {
+		// TODO Auto-generated method stub
+		return commentMapper.selectCount(boardId);
 	}
 
 	

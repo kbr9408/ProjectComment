@@ -1,5 +1,6 @@
 package comment.vo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CommentVO {
@@ -45,8 +46,12 @@ public class CommentVO {
 		this.commentWriter = commentWriter;
 	}
 
-	public Date getCommentRdate() {
-		return commentRdate;
+	public String getCommentRdate() {
+		SimpleDateFormat sdf;
+		sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String printdate;
+		printdate = sdf.format(commentRdate);
+		return printdate;
 	}
 
 	public void setCommentRdate(Date commentRdate) {

@@ -8,14 +8,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import comment.dao.CommentDAO;
 import comment.vo.CommentVO;
+import commons.Criteria;
 
 @Service("commentService")
 public class CommentServiceImpl implements CommentService{
+	
+	
 	@Autowired
 	private CommentDAO commentDao;
 	
 	@Override
-	@Transactional
 	public void createComment(CommentVO comment) {
 		commentDao.insertComment(comment);
 		
@@ -24,16 +26,15 @@ public class CommentServiceImpl implements CommentService{
 
 
 	@Override
-	@Transactional
-	public void deleteComment(CommentVO comment) {
-		commentDao.deleteComment(comment.getCommentNo());
+	public void deleteComment(int commentNo) {
+		commentDao.deleteComment(commentNo);
 		
 	}
 
 	@Override
 	@Transactional
-	public List<CommentVO> commentList(CommentVO comment) {
-		return commentDao.selectAll();
+	public List<CommentVO> commentList(int boardId) {
+		return commentDao.selectAll(boardId);
 	
 	}
 
@@ -48,5 +49,20 @@ public class CommentServiceImpl implements CommentService{
 	@Transactional
 	public void selectOneComment(CommentVO comment ) {
 		commentDao.selectOne(comment.getCommentNo());
+	}
+
+
+	@Override
+	public List<CommentVO> getCommentPaging(int boardId, Criteria criteria) {
+		return commentDao.listPaging(boardId, criteria);
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public int countComment(int boardId) throws Exception {
+		// TODO Auto-generated method stub
+		return commentDao.CountComment(boardId);
 	}
 }

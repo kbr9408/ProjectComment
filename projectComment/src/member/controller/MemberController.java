@@ -72,13 +72,15 @@ public class MemberController {
 	
 	@RequestMapping(value = "/insertMember", method= RequestMethod.POST) 
 	public String insertMember(MemberVo memberVO, Model model) throws Exception { 
-		
+		System.out.println(memberVO);
 		model.addAttribute("memberVO" , memberVO);
 		memberService.insertMember(memberVO); 
 		//회원가입 인증메일 보내기 추가예정(메일샌더서비스 검색해서..)
 		
 		System.out.println(memberVO.getMemberId()+" , "+memberVO.getMemberName());
-		return "/WEB-INF/views/login/signupResult.jsp"; 
+		
+		
+		return "LoginWithSession"; 
 		
 	}
 	
@@ -97,10 +99,7 @@ public class MemberController {
 		
 		
 		countId = memberService.idcheck(memberId);
-		System.out.println(countId);
-		System.out.println("되나..");
 	    map.put("cnt", countId);
-	    System.out.println(map.get("cnt"));
 	    return map;
 		
 		}
@@ -121,7 +120,6 @@ public class MemberController {
 		
 		
 		countPassword = memberService.pwdcheck(Password);
-		System.out.println(countPassword);
 	    map.put("cnt", countPassword);
 
 		return map;
@@ -134,15 +132,14 @@ public class MemberController {
 	@RequestMapping(value = "/LoginWithSession")
 	public String LoginWithSession(LoginDto loginDTO, HttpSession session) throws Exception{
 	
-		System.out.println(loginDTO.getMemberId());
-		System.out.println(loginDTO.getMemberPassword());
 		
-	
+		
+		System.out.println("longinDto ::"+loginDTO);
 		MemberVo member = memberService.loginMember(loginDTO);
-		session.setAttribute("member",member);
+		session.setAttribute("loginInfo",member);
+		System.out.println("로그인이 완료되었습니다.");
 		
-		
-		return "redirect:/loginForm.jsp";
+		return "redirect:/contact.jsp";
 		
 	}
 
@@ -170,7 +167,7 @@ public class MemberController {
 		request.getSession().removeAttribute("loginInfo");
 		model.addAttribute("","");
 		
-		return "redirect:/loginMember";
+		return "/index.jsp";
       }
 	
 	 
